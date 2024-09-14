@@ -1,112 +1,31 @@
-from flask import Flask, request, jsonify
-from InterviewAssistant import InterviewAssistant  # Import the InterviewAssistant class
-import logging
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-app = Flask(__name__)
+# Assuming InterviewAssistant is a custom class you have defined in another module
+from InterviewAssistant import InterviewAssistant  # Import the class
 
+app = FastAPI()
 
+# Initialize the InterviewAssistant with a LinkedIn profile or any other required data
 assistant = InterviewAssistant("https://www.linkedin.com/in/umermehmood2762/")
 
+class FeedbackRequest(BaseModel):
+    job_role: str
+    job_description: str
+    interview_question: str
+    candidate_answer: str
 
-logging.basicConfig(level=logging.DEBUG)
-
-
-def serialize(obj):
-    if hasattr(obj, 'to_dict'):
-        return obj.to_dict()  
-    elif isinstance(obj, dict):
-        return obj  
-    elif isinstance(obj, list):
-        return [serialize(item) for item in obj]  
-    else:
-        
-        return {"error": "Object of type {} is not JSON serializable".format(type(obj).__name__)}
-
-@app.route('/generate-interview-questions', methods=['POST'])
-def generate_interview_questions():
-    try:
-        data = request.json
-        questions = assistant.generate_interview_questions(data['job_role'], data['job_description'])
-        logging.debug(f"Generated questions: {questions}")
-
-        # Serialize the result
-        response = serialize(questions)
-        return jsonify(response)
-
-    except Exception as e:
-        logging.error(f"Error generating interview questions: {e}")
-        return jsonify({"error": "An error occurred while generating interview questions"}), 500
-
-@app.route('/provide-feedback', methods=['POST'])
-def provide_feedback():
-    try:
-        data = request.json
-        feedback = assistant.provide_feedback(
-            data['job_role'],
-            data['job_description'],
-            data['interview_question'],
-            data['candidate_answer']
-        )
-        logging.debug(f"Feedback generated: {feedback}")
-
-        response = serialize(feedback)
-        return jsonify(response)
-
-    except Exception as e:
-        logging.error(f"Error providing feedback: {e}")
-        return jsonify({"error": "An error occurred while providing feedback"}), 500
-
-@app.route('/solve-technical-problem', methods=['POST'])
-def solve_technical_problem():
-    try:
-        data = request.json
-        problem_solution = assistant.solve_technical_problem(data['criteria'])
-        logging.debug(f"Problem solution: {problem_solution}")
-
-        response = serialize(problem_solution)
-        return jsonify(response)
-
-    except Exception as e:
-        logging.error(f"Error solving technical problem: {e}")
-        return jsonify({"error": "An error occurred while solving technical problems"}), 500
-
-@app.route('/handle-interview-question-flow', methods=['POST'])
-def handle_interview_question_flow():
-    try:
-        data = request.json
-        interview_flow = assistant.handle_interview_question_flow(
-            data['job_role'],
-            data['job_description'],
-            data['interview_question'],
-            data['candidate_answer']
-        )
-        logging.debug(f"Interview flow: {interview_flow}")
-
-        response = serialize(interview_flow)
-        return jsonify(response)
-
-    except Exception as e:
-        logging.error(f"Error handling interview question flow: {e}")
-        return jsonify({"error": "An error occurred during interview question flow"}), 500
-
-@app.route('/review-linkedin-profile', methods=['POST'])
-def review_linkedin_profile():
-    try:
-        linkedin_feedback = assistant.review_linkedin_profile_and_provide_feedback()
-        logging.debug(f"LinkedIn feedback: {linkedin_feedback}")
-
-        response = serialize(linkedin_feedback)
-        return jsonify(response)
-
-    except Exception as e:
-        logging.error(f"Error reviewing LinkedIn profile: {e}")
-        return jsonify({"error": "An error occurred while reviewing the LinkedIn profile"}), 500
-
-
-@app.errorhandler(Exception)
-def handle_exception(e):
-    logging.error(f"Unhandled exception: {e}")
-    return jsonify({"error": "An unexpected error occurred. Please try again later."}), 500
+@app.post("/provide-feedback/")
+def provide_feedback(request: FeedbackRequest):
+    # Call the assistant's provide_feedback method and return the result
+    feedback = assistant.provide_feedback(
+        request.job_role,
+        request.job_description,
+        request.interview_question,
+        request.candidate_answer
+    )
+    return {"result": feedback}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
