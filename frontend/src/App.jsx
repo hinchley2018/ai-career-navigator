@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom"
  
 import LandingPage from "./pages/landing-page"
-import InterviewPreparation from "./pages/interview-prep"
-
-
+import InterviewPrepPage from "./pages/interview-prep"
 
 function App(){
 
@@ -11,7 +9,7 @@ function App(){
     <>
     <Routes>
       <Route path="/" element={<LandingPage/>} />
-      <Route path="/interview" element={<InterviewPreparation/>}/>
+      <Route path="/interview-prep" element={<InterviewPrepPage/>} />
     </Routes>
     
     </>
