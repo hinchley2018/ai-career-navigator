@@ -188,36 +188,36 @@ class InterviewAssistant:
 if __name__ == "__main__":
     assistant = InterviewAssistant("https://www.linkedin.com/in/umermehmood2762/")
     
-    # # Generate interview questions
-    # questions = assistant.generate_interview_questions(
-    #     job_role="Software Engineer",
-    #     job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
-    # )
-    # print(questions)
+    # Generate interview questions
+    questions = assistant.generate_interview_questions(
+        job_role="Software Engineer",
+        job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
+    )
+    print(questions)
     
-    # # Provide feedback on an answer
-    # feedback = assistant.provide_feedback(
-    #     job_role="Software Engineer",
-    #     job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
-    #     interview_question=str(questions),
-    #     candidate_answer="I worked on a project where we had tight deadlines and limited resources. I overcame the obstacles by prioritizing tasks, working closely with the team, and finding creative solutions to manage the resources effectively."
-    # )
-    # print(feedback)
+    # Provide feedback on an answer
+    feedback = assistant.provide_feedback(
+        job_role="Software Engineer",
+        job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
+        interview_question=str(questions),
+        candidate_answer="I worked on a project where we had tight deadlines and limited resources. I overcame the obstacles by prioritizing tasks, working closely with the team, and finding creative solutions to manage the resources effectively."
+    )
+    print(feedback)
     
-    # # Solve a technical problem
-    # problem_solution = assistant.solve_technical_problem(
-    #     criteria="Create a sorting algorithm that optimizes for both time and space complexity."
-    # )
-    # print(problem_solution)
+    # Solve a technical problem
+    problem_solution = assistant.solve_technical_problem(
+        criteria="Create a sorting algorithm that optimizes for both time and space complexity."
+    )
+    print(problem_solution)
     
-    # # Handle the interview question flow
-    # interview_flow = assistant.handle_interview_question_flow(
-    #     job_role="Software Engineer",
-    #     job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
-    #     interview_question=str(questions),
-    #     candidate_answer="I handled the project by breaking down the tasks into manageable parts and working with the team to ensure timely delivery."
-    # )
-    # print(interview_flow)
+    # Handle the interview question flow
+    interview_flow = assistant.handle_interview_question_flow(
+        job_role="Software Engineer",
+        job_description="Responsible for developing and maintaining software applications, participating in code reviews, and collaborating with cross-functional teams.",
+        interview_question=str(questions),
+        candidate_answer="I handled the project by breaking down the tasks into manageable parts and working with the team to ensure timely delivery."
+    )
+    print(interview_flow)
     
     # Review LinkedIn profile and provide feedback
     linkedin_feedback = assistant.review_linkedin_profile_and_provide_feedback()
