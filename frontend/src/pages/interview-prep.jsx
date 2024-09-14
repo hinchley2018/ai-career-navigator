@@ -1,3 +1,4 @@
+import Footer from "../components/footer";
 
 import ChatLayout from '../components/chat/chat-layout'
 
@@ -7,4 +8,5 @@ function InterviewPreparation(){
         <ChatLayout/>
     )
 }
-export default InterviewPreparation
+
+export default InterviewPreparation;

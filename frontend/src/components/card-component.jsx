@@ -54,7 +54,7 @@ const Card = () => {
         </motion.span>
       </div>
       <Link
-        to='/'
+        to='/interview'
         className="z-20 rounded border-2 bg-white/10 py-2 text-red-500 hover:bg-white/20 transition text-center"
       >
         Explore!
