@@ -1,6 +1,6 @@
 # AI Career Navigator
 
-AI Career Navigator for the [lablab.ai AI Hackathon](https://lablab.ai/event/ai-agents-hack-with-lablab-and-mindsdb/careernavigator)
+AI Career Navigator for the [lablab.ai AI Hackathon](https://lablab.ai/event/ai-agents-hack-with-lablab-and-mindsdb/careernavigator) \n
 Live demo here : [Career Navigator AI](https://ai-career-navigator.onrender.com/) 
 ## Skills Used
 - **AI Skills**: Multi-agent orchestration using **CrewAI** or **Autogen**
