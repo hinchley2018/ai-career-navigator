@@ -4,7 +4,7 @@ from langchain_cohere import ChatCohere
 import os
 
 # Set API keys as environment variables
-os.environ["COHERE_API_KEY"] = ""
+os.environ["COHERE_API_KEY"] = "PPxvWZZnTGFueJoI8gbiel23rheor7mSwIrJ2PI8"
 
 class InterviewAssistant:
     def __init__(self):
