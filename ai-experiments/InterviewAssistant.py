@@ -7,8 +7,7 @@ import os
 os.environ["COHERE_API_KEY"] = ""
 
 class InterviewAssistant:
-    def __init__(self, link_to_profile):
-        self.link_to_profile = link_to_profile
+    def __init__(self):
         # Initialize the language model
         self.llm = ChatCohere()
 
@@ -120,8 +119,8 @@ class InterviewAssistant:
             agent=self.interview_question_flow_agent
         )
 
-    def review_linkedin_profile_and_provide_feedback(self):
-        text = SeleniumScrapingTool(self.link_to_profile).run()
+    def review_linkedin_profile_and_provide_feedback(self,link_to_profile):
+        text = SeleniumScrapingTool(link_to_profile).run()
         profile_input = {
             "profile_data": text
         }
@@ -170,5 +169,5 @@ class InterviewAssistant:
         return self.crew.kickoff(inputs=problem_inputs)
 
 # Example usage:
-# assistant = InterviewAssistant("https://www.linkedin.com/in/example/")
-# assistant.review_linkedin_profile_and_provide_feedback()
+# assistant = InterviewAssistant()
+# assistant.review_linkedin_profile_and_provide_feedback("https://www.linkedin.com/in/example/")
